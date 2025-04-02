@@ -1,6 +1,6 @@
-FROM NODE:18
+FROM node:18
 
-COPY package-lock.json/ package.json /user/app/
+COPY package-lock.json package.json /user/app/
 
 WORKDIR /user/app/
 
@@ -8,9 +8,20 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 5173
+RUN npm install -g serve
 
-CMD ["npm" "run" "dev"]
+RUN npm run build
+
+WORKDIR /user/app/dist
+
+COPY dist/ /user/app/
+
+EXPOSE 3000
+
+CMD ["serve", "-s", "."]
+
+# CMD ["npm", "run", "dev", "--", "--host"]
+
 
 
 
