@@ -1,0 +1,12 @@
+* {
+  background-color: black;
+}
+
+.color {
+  background-color: aqua;
+  color: black;
+  display: flex;
+  justify-content: center;
+
+  width: auto;
+}
